@@ -1,7 +1,6 @@
 import db from './db.js';
 import crypto from 'crypto';
 
-//funzione per initializzare il database con i dati necessari
 function seed() {
     db.serialize(() => {
         db.run("DELETE FROM games");
@@ -14,9 +13,9 @@ function seed() {
         db.run("DELETE FROM sqlite_sequence WHERE name IN ('games', 'connections', 'stations', 'lines', 'events', 'users')");
 
         const users = [
-            { username: 'PaulAtreides', password: 'Caladan123' },
-            { username: 'BaronHarkonnen', password: 'Spice200' },
-            { username: 'Stilgar', password: 'Water12' }
+            { username: 'PaulAtreides', password: 'LisanAlGaib' },
+            { username: 'BaronHarkonnen', password: 'Spice123' },
+            { username: 'DuncanIdaho', password: 'CantDie200' }
         ];
 
         users.forEach((u, index) => {
@@ -25,7 +24,6 @@ function seed() {
             db.run(`INSERT INTO users (id, username, password, salt) VALUES (?, ?, ?, ?)`, [index + 1, u.username, hashedPassword, salt]);
         });
 
-        console.log('Seeding stations...');
         const stations = [
             { id: 1, name: 'Caladan' },
             { id: 2, name: 'Ginaz' },
@@ -78,11 +76,11 @@ function seed() {
         });
 
         const connections = [
-            [1, 2, 1], [2, 3, 1], [3, 9, 1],
-            [4, 5, 2], [5, 3, 2], [3, 6, 2],
-            [7, 15, 3], [15, 8, 3], [8, 6, 3], [6, 9, 3],
-            [12, 11, 4], [11, 10, 4], [10, 9, 4],
-            [5, 14, 5], [14, 13, 5], [13, 9, 5]
+            [1, 2, 1], [2, 3, 1], [10, 3, 1],
+            [4, 15, 2], [9, 15, 2], [9, 11, 2],
+            [7, 15, 3], [3, 15, 3], [3, 8, 3],
+            [12, 9, 4], [2, 9, 4], [2, 6, 4],
+            [5, 14, 5], [3, 14, 5], [3, 9, 5], [13, 9, 5]
         ];
 
         connections.forEach(c => {
