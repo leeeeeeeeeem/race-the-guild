@@ -1,0 +1,43 @@
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+
+function NavigationBar({ user, loggedIn, logout }) {
+    const navigate = useNavigate();
+
+    return (
+        <Navbar expand variant="dark">
+            <Container>
+                <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+                    <i className="bi bi-rocket-fill me-2 text-primary"></i>
+                    <strong>Ultima Corsa</strong>
+                </Navbar.Brand>
+                <Nav className="me-auto flex-row gap-3">
+                    {loggedIn && (
+                        <>
+                            <Nav.Link as={Link} to="/play">Gioca</Nav.Link>
+                            <Nav.Link as={Link} to="/leaderboard">Classifica</Nav.Link>
+                        </>
+                    )}
+                </Nav>
+                <Nav className="align-items-center flex-row gap-3">
+                    {loggedIn ? (
+                        <>
+                            <Navbar.Text style={{ color: '#bac2de' }}>
+                                Utente: <strong>{user?.username}</strong>
+                            </Navbar.Text>
+                            <Button variant="secondary" onClick={() => logout().then(() => navigate('/'))}>
+                                Esci
+                            </Button>
+                        </>
+                    ) : (
+                        <Button variant="primary" as={Link} to="/">
+                            Accedi
+                        </Button>
+                    )}
+                </Nav>
+            </Container>
+        </Navbar>
+    );
+}
+
+export default NavigationBar;
