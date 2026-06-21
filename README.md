@@ -99,7 +99,7 @@
 - Table `lines` - Contiene le linee, con id, nome e colore con cui vengono disegnate sulla mappa
 - Table `connections` - Contiene tutti i collegamenti tra stazioni, salvati in modo bidirezionale (sia 2-1 che 1-2), ogni collegamento ha un suo id, l'id delle due stazioni e l'id della linea a cui appartiene
 - Table `events` - Contiene gli eventi che possono capitare casualmente durante il viaggio, con id, descrizione ed effetto
-- Table `games` - Contiene tutte le partite già terminata, con un id per ogni partita, id dell'utente che l'ha giocata e punteggio
+- Table `games` - Contiene tutte le partite già terminate, con un id per ogni partita, id dell'utente che l'ha giocata e punteggio
 
 ## Main React Components
 
@@ -120,11 +120,11 @@
 
 ## Users Credentials
 
-- `PaulAtreides`, `LisanAlGaib`
-- `BaronHarkonnen`, `Spice123`
-- `DuncanIdaho`, `CantDie200`
-- `LadyJessica`, `Sisterhood`
-- `MilesTeg`, `MentatGeneral`
+- PaulAtreides, LisanAlGaib
+- BaronHarkonnen, Spice123
+- DuncanIdaho, CantDie200
+- LadyJessica, Sisterhood
+- MilesTeg, MentatGeneral
 
 ## Use of AI Tools
 Ho utilizzato LLM per assistere allo sviluppo nei seguenti modi:
