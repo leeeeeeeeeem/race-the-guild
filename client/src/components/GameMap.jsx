@@ -17,14 +17,14 @@ const stationCoordinates = {
     15: { x: 608, y: 356 }
 };
 
-function GameMap({ network, phase, startStation, endStation, path, selectedConnections, submitResults }) {
+function GameMap({ network, phase, startStation, endStation, path, selectedConnections }) {
     if (!network) return null;
 
     const { stations, lines, connections } = network;
 
     const getLineColor = (lineId) => {
         const line = lines.find(l => l.id === lineId);
-        return line ? line.color : '#45475a';
+        return line.color;
     };
 
     const uniqueConnections = connections.filter(c => c.station1_id < c.station2_id);

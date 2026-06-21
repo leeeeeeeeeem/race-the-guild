@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 
-function GameTimer({ secondsLeft, setSecondsLeft, onTimeout }) {
+function GameTimer({ secondsLeft, setSecondsLeft, handleSubmit }) {
     useEffect(() => {
         if (secondsLeft <= 0) {
-            onTimeout();
+            handleSubmit();
             return;
         }
 
@@ -13,7 +13,7 @@ function GameTimer({ secondsLeft, setSecondsLeft, onTimeout }) {
         }, 1000);
 
         return () => clearInterval(timerId);
-    }, [secondsLeft, onTimeout, setSecondsLeft]);
+    }, [secondsLeft, handleSubmit, setSecondsLeft]);
 
     return (
         <Card className="p-3 text-center">

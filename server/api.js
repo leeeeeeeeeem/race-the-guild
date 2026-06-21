@@ -44,7 +44,7 @@ router.get('/sessions/current', (req, res) => {
     return res.status(401).json({ error: 'Non autenticato' });
 });
 
-router.get('/network', async (req, res) => {
+router.get('/network', async (_, res) => {
     try {
         const stations = await network.getStations();
         const lines = await network.getLines();
@@ -55,7 +55,7 @@ router.get('/network', async (req, res) => {
     }
 });
 
-router.get('/leaderboard', isLoggedIn, async (req, res) => {
+router.get('/leaderboard', isLoggedIn, async (_, res) => {
     try {
         const leaderboard = await game.getLeaderboard();
         res.json(leaderboard);
@@ -67,15 +67,11 @@ router.get('/leaderboard', isLoggedIn, async (req, res) => {
 router.post('/games', isLoggedIn, async (req, res) => {
     try {
         const stations = await network.getStations();
-        if (stations.length < 2) {
-            return res.status(500).json({ error: 'Rete non configurata' });
-        }
 
         let startStation, endStation;
         let distance = 0;
-        let attempts = 0;
 
-        while (distance < 3 && attempts < 100) {
+        while (distance < 3 ) {
             const idx1 = Math.floor(Math.random() * stations.length);
             let idx2 = Math.floor(Math.random() * stations.length);
             while (idx1 === idx2) {
@@ -84,11 +80,6 @@ router.post('/games', isLoggedIn, async (req, res) => {
             startStation = stations[idx1];
             endStation = stations[idx2];
             distance = await network.getDistance(startStation.id, endStation.id);
-            attempts++;
-        }
-
-        if (distance < 3) {
-            return res.status(500).json({ error: 'Impossibile generare stazioni distanti almeno 3 tratte' });
         }
 
         req.session.gameStartTime = Date.now();
@@ -100,11 +91,13 @@ router.post('/games', isLoggedIn, async (req, res) => {
             startStation,
             endStation
         });
-    } catch (err) {
+
+    } catch(err) {
         res.status(500).json({ error: 'Errore interno del server' });
     }
 });
 
+// riceve percorso dal client, lo valida e se va bene assegna gli eventi casualmente
 router.post('/games/submit', isLoggedIn, async (req, res) => {
     try {
         if (!req.session.gameInProgress) {
@@ -130,6 +123,7 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
         const startId = req.session.startStationId;
         const endId = req.session.endStationId;
 
+        // logica per controllo del percorso
         const validatePath = (p, sId, eId, conns) => {
             if (!Array.isArray(p) || p.length < 2) {
                 return false;
@@ -141,21 +135,19 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
                 return false;
             }
 
-            const connMap = {};
+            const connections = new Set();
             for (const c of conns) {
-                connMap[`${c.station1_id}-${c.station2_id}`] = c.line_id;
+                connections.add(`${c.station1_id}-${c.station2_id}`);
             }
 
             const visitedEdges = new Set();
-            const interchangeStations = new Set([2, 3, 9, 15]);
-            let previousLineId = null;
 
             for (let i = 0; i < p.length - 1; i++) {
                 const u = p[i];
                 const v = p[i + 1];
                 const key = `${u}-${v}`;
 
-                if (!connMap[key]) {
+                if (!connections.has(key)) {
                     return false;
                 }
 
@@ -164,16 +156,6 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
                     return false;
                 }
                 visitedEdges.add(edgeId);
-
-                const currentLineId = connMap[key];
-
-                if (previousLineId !== null && previousLineId !== currentLineId) {
-                    if (!interchangeStations.has(u)) {
-                        return false;
-                    }
-                }
-
-                previousLineId = currentLineId;
             }
 
             return true;
@@ -198,28 +180,16 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
             stationMap[s.id] = s.name;
         }
 
-        const selectWeightedEvent = (evs) => {
-            const weights = { 1: 30, 2: 15, 3: 15, 4: 10, 5: 5, 6: 2, 7: 15, 8: 10, 9: 5, 10: 2 };
-            let totalWeight = 0;
-            for (const e of evs) {
-                totalWeight += weights[e.id] || 0;
-            }
-            let r = Math.random() * totalWeight;
-            for (const e of evs) {
-                const w = weights[e.id] || 0;
-                if (r < w) {
-                    return e;
-                }
-                r -= w;
-            }
-            return evs[0];
+        const selectEvent = (evs) => {
+            const idx = Math.floor(Math.random() * evs.length);
+            return evs[idx];
         };
 
         let currentCoins = 20;
         const steps = [];
 
         for (let i = 0; i < path.length - 1; i++) {
-            const selectedEvent = selectWeightedEvent(events);
+            const selectedEvent = selectEvent(events);
             currentCoins += selectedEvent.effect;
             steps.push({
                 from: stationMap[path[i]],
@@ -243,7 +213,7 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
             score: finalScore
         });
 
-    } catch (err) {
+    } catch(err) {
         res.status(500).json({ error: 'Errore interno del server' });
     }
 });

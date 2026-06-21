@@ -4,11 +4,11 @@ export default class Game {
     saveGame(userId, score) {
         return new Promise((resolve, reject) => {
             const query = 'INSERT INTO games (user_id, score) VALUES (?, ?)';
-            db.run(query, [userId, score], function (err) {
+            db.run(query, [userId, score], (err) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(this.lastID);
+                    resolve();
                 }
             });
         });

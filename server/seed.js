@@ -15,7 +15,9 @@ function seed() {
         const users = [
             { username: 'PaulAtreides', password: 'LisanAlGaib' },
             { username: 'BaronHarkonnen', password: 'Spice123' },
-            { username: 'DuncanIdaho', password: 'CantDie200' }
+            { username: 'DuncanIdaho', password: 'CantDie200' },
+            { username: 'LadyJessica', password: 'Sisterhood' },
+            { username: 'MilesTeg', password: 'MentatGeneral' }
         ];
 
         users.forEach((u, index) => {
@@ -47,11 +49,11 @@ function seed() {
         });
 
         const lines = [
-            { id: 1, name: 'Linea Atreides', color: '#2E7D32' },
-            { id: 2, name: 'Linea Harkonnen', color: '#C62828' },
-            { id: 3, name: 'Linea Imperiale', color: '#F9A825' },
-            { id: 4, name: 'Linea della Gilda', color: '#1565C0' },
-            { id: 5, name: 'Linea Bene Gesserit', color: '#8E24AA' }
+            { id: 1, name: 'Linea Atreides', color: '#a6e3a1' }, //verde
+            { id: 2, name: 'Linea Harkonnen', color: '#f38ba8' }, //rosso
+            { id: 3, name: 'Linea Imperiale', color: '#f9e2af' }, //giallo
+            { id: 4, name: 'Linea della Gilda', color: '#fab387' }, //arancione
+            { id: 5, name: 'Linea Bene Gesserit', color: '#89b4fa' } //blu
         ];
 
         lines.forEach(l => {
@@ -89,14 +91,18 @@ function seed() {
         });
 
         const games = [
-            { user_id: 1, score: 24, timestamp: '2026-06-07 10:00:00' },
-            { user_id: 1, score: 15, timestamp: '2026-06-07 11:30:00' },
-            { user_id: 2, score: 22, timestamp: '2026-06-07 09:15:00' },
-            { user_id: 2, score: 18, timestamp: '2026-06-07 14:00:00' }
+            { user_id: 1, score: 24 },
+            { user_id: 1, score: 15 },
+            { user_id: 2, score: 22 },
+            { user_id: 2, score: 18 },
+            { user_id: 3, score: 10 },
+            { user_id: 3, score: 26 },
+            { user_id: 4, score: 19 },
+            { user_id: 5, score: 12 }
         ];
 
         games.forEach(g => {
-            db.run(`INSERT INTO games (user_id, score, timestamp) VALUES (?, ?, ?)`, [g.user_id, g.score, g.timestamp]);
+            db.run(`INSERT INTO games (user_id, score) VALUES (?, ?)`, [g.user_id, g.score]);
         });
     });
 }

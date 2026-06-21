@@ -125,7 +125,6 @@ function Play({ network }) {
                         endStation={endStation}
                         path={path}
                         selectedConnections={selectedConnections}
-                        submitResults={submitResults}
                     />
                 </Col>
 
@@ -147,7 +146,7 @@ function Play({ network }) {
                             <GameTimer
                                 secondsLeft={secondsLeft}
                                 setSecondsLeft={setSecondsLeft}
-                                onTimeout={handleSubmit}
+                                handleSubmit={handleSubmit}
                             />
                             <div className="flex-grow-1">
                                 <ConnectionSelector
@@ -155,8 +154,8 @@ function Play({ network }) {
                                     selectedConnections={selectedConnections}
                                     startStation={startStation}
                                     endStation={endStation}
-                                    onToggleConnection={handleToggleConnection}
-                                    onClear={handleClear}
+                                    handleToggleConnection={handleToggleConnection}
+                                    handleClear={handleClear}
                                 />
                             </div>
                             <Button
@@ -175,7 +174,7 @@ function Play({ network }) {
                         <div className="flex-grow-1">
                             <ExecutionView
                                 submitResults={submitResults}
-                                onFinish={handleFinishExecution}
+                                handleFinishExecution={handleFinishExecution}
                             />
                         </div>
                     )}
@@ -184,7 +183,7 @@ function Play({ network }) {
                         <div className="flex-grow-1">
                             <ResultView
                                 submitResults={submitResults}
-                                onRestart={handleRestart}
+                                handleRestart={handleRestart}
                             />
                         </div>
                     )}

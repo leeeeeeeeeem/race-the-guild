@@ -1,6 +1,6 @@
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
-function ConnectionSelector({ network, selectedConnections, onToggleConnection, onClear, startStation, endStation }) {
+function ConnectionSelector({ network, selectedConnections, handleToggleConnection, handleClear, startStation, endStation }) {
     if (!network) return null;
 
     const { stations, connections } = network;
@@ -37,7 +37,7 @@ function ConnectionSelector({ network, selectedConnections, onToggleConnection, 
                                 <Button
                                     variant={isSelected ? "primary" : "outline-connection"}
                                     className="w-100 text-start d-flex align-items-center"
-                                    onClick={() => onToggleConnection(conn)}
+                                    onClick={() => handleToggleConnection(conn)}
                                 >
                                     {isSelected && (
                                         <span className="badge bg-dark text-primary me-2 fw-bold" style={{ border: '1px solid #89b4fa' }}>
@@ -57,9 +57,9 @@ function ConnectionSelector({ network, selectedConnections, onToggleConnection, 
                     variant="danger"
                     className="w-100"
                     disabled={selectedConnections.length === 0}
-                    onClick={onClear}
+                    onClick={handleClear}
                 >
-                    Svuota Selezione
+                    Svuota selezione
                 </Button>
             </div>
         </Card>

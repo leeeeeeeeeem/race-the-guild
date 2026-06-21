@@ -40,8 +40,8 @@ export default class Network {
         });
     }
 
-	// ricerca in ampiezza (bfs) sul grafo delle connessioni rappresentato come lista delle adiacenze
-	// per trovare la distanza minima, che serve per l'assegnazione delle due stazioni all'inizio della partita
+    // ricerca in ampiezza (bfs) sul grafo delle connessioni rappresentato come lista delle adiacenze
+    // per trovare la distanza minima, che serve per l'assegnazione delle due stazioni all'inizio della partita
     async getDistance(startId, endId) {
         const connections = await this.getConnections();
         const adj = {};
@@ -49,7 +49,9 @@ export default class Network {
             const u = conn.station1_id;
             const v = conn.station2_id;
             if (!adj[u]) adj[u] = [];
+            if (!adj[v]) adj[v] = [];
             adj[u].push(v);
+            adj[v].push(u);
         }
 
         const queue = [[startId, 0]];
@@ -62,7 +64,7 @@ export default class Network {
                 return dist;
             }
 
-            const neighbors = adj[curr];
+            const neighbors = adj[curr] || [];
             for (const neighbor of neighbors) {
                 if (!visited.has(neighbor)) {
                     visited.add(neighbor);
@@ -70,5 +72,6 @@ export default class Network {
                 }
             }
         }
+        return -1;
     }
 }

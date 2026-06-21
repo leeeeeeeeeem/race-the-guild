@@ -1,6 +1,6 @@
 import { Card, Button } from 'react-bootstrap';
 
-function ResultView({ submitResults, onRestart }) {
+function ResultView({ submitResults, handleRestart }) {
     if (!submitResults) return null;
 
     const { valid, score } = submitResults;
@@ -31,7 +31,7 @@ function ResultView({ submitResults, onRestart }) {
             </div>
 
             <div className="mt-3">
-                <Button variant="primary" size="lg" onClick={onRestart}>
+                <Button variant="primary" size="lg" onClick={handleRestart}>
                     Gioca ancora
                 </Button>
             </div>

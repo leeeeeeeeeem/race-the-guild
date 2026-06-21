@@ -20,7 +20,7 @@ function Leaderboard() {
     return (
         <div className="container py-2" style={{ maxWidth: '800px' }}>
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h2>Classifica Generale</h2>
+                <h2>Classifica</h2>
                 <Button variant="secondary" as={Link} to="/">
                     Torna alla home
                 </Button>
@@ -47,10 +47,7 @@ function Leaderboard() {
                                 {leaderboard.map((row, index) => (
                                     <tr key={index}>
                                         <td>
-                                            {index === 0 && <span className="badge me-1" style={{ backgroundColor: '#f9e2af', color: '#181825' }}>1</span>}
-                                            {index === 1 && <span className="badge me-1" style={{ backgroundColor: '#bac2de', color: '#181825' }}>2</span>}
-                                            {index === 2 && <span className="badge me-1" style={{ backgroundColor: '#fab387', color: '#181825' }}>3</span>}
-                                            {index > 2 && `${index + 1}`}
+                                            {index + 1}
                                         </td>
                                         <td><strong>{row.username}</strong></td>
                                         <td className="text-end">

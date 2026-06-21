@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Card, Button, Table, Alert } from 'react-bootstrap';
+import { Card, Button, Table } from 'react-bootstrap';
 
-function ExecutionView({ submitResults, onFinish }) {
+function ExecutionView({ submitResults, handleFinishExecution }) {
     const [currentIdx, setCurrentIdx] = useState(0);
 
     if (!submitResults) return null;
@@ -13,7 +13,7 @@ function ExecutionView({ submitResults, onFinish }) {
             <Card className="p-4 text-center">
                 <Card.Title as="h3" className="text-danger mb-3">Percorso non valido</Card.Title>
                 <div className="h5 my-4">Punteggio ottenuto: <strong className="text-danger">0</strong> solari</div>
-                <Button variant="primary" onClick={onFinish}>
+                <Button variant="primary" onClick={handleFinishExecution}>
                     Visualizza risultato
                 </Button>
             </Card>
@@ -27,7 +27,7 @@ function ExecutionView({ submitResults, onFinish }) {
             const nextIdx = currentIdx + 1;
             setCurrentIdx(nextIdx);
         } else {
-            onFinish();
+            handleFinishExecution();
         }
     };
 

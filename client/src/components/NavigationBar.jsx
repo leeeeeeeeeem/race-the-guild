@@ -8,7 +8,7 @@ function NavigationBar({ user, loggedIn, logout }) {
         <Navbar expand variant="dark">
             <Container>
                 <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-                    <i className="bi bi-rocket-fill me-2 text-primary"></i>
+                    <img src="/favicon.svg" width="40" height="40" className="me-2" />
                     <strong>Ultima Corsa</strong>
                 </Navbar.Brand>
                 <Nav className="me-auto flex-row gap-3">
