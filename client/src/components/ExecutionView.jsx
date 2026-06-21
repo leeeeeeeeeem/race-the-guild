@@ -33,7 +33,7 @@ function ExecutionView({ submitResults, handleFinishExecution }) {
 
     return (
         <Card className="p-3">
-            <Card.Title className="mb-3 text-center text-primary">Corsa in Esecuzione</Card.Title>
+            <Card.Title className="mb-3 text-center text-primary">Corsa in esecuzione</Card.Title>
 
             <div className="p-3 mb-4 rounded" style={{ backgroundColor: '#1e1e2e', color: '#cdd6f4' }}>
                 <div className="d-flex justify-content-between align-items-center mb-3">
@@ -57,7 +57,7 @@ function ExecutionView({ submitResults, handleFinishExecution }) {
             </div>
 
             <div className="mb-4">
-                <div className="small text-muted mb-2">Storico del Viaggio:</div>
+                <div className="small text-muted mb-2">Storico del viaggio:</div>
                 <Table hover responsive className="small">
                     <thead>
                         <tr>
@@ -87,9 +87,9 @@ function ExecutionView({ submitResults, handleFinishExecution }) {
             <div className="d-flex justify-content-center">
                 <Button variant="primary" size="lg" onClick={handleNext} style={{ minWidth: '200px' }}>
                     {currentIdx < steps.length - 1 ? (
-                        'Tappa Successiva'
+                        'Tappa successiva'
                     ) : (
-                        'Visualizza Risultato'
+                        'Visualizza risultato'
                     )}
                 </Button>
             </div>
