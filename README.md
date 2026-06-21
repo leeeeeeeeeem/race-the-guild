@@ -1,5 +1,5 @@
 # Exam #1: "Ultima Corsa"
-## Student: s123456 LASTNAME FIRSTNAME 
+## Student: s353334 LEMERLE STEFANO THOMAS 
 
 ## React Client Application Routes
 
@@ -115,8 +115,8 @@
 
 ## Screenshot
 
-![Screenshot](./img/Screenshot 2026-06-21 at 16-42-14 Ultima Corsa.png)
-![Screenshot](./img/Screenshot 2026-06-21 at 16-42-41 Ultima Corsa.png)
+![Screenshot](./img/screenshot1.png)
+![Screenshot](./img/screenshot2.png)
 
 ## Users Credentials
 
