@@ -11,7 +11,7 @@ function LoginForm({ login }) {
         setErrorMessage('');
         
         if (username.trim() === '' || password.trim() === '') {
-            setErrorMessage('Inserisci sia username che password');
+            setErrorMessage('Enter both username and password');
             return;
         }
 
@@ -23,14 +23,14 @@ function LoginForm({ login }) {
 
     return (
         <Card className="p-4 w-100 h-100 d-flex flex-column justify-content-center" style={{ maxWidth: '400px', margin: '0 auto' }}>
-            <Card.Title className="text-center mb-4">Accedi</Card.Title>
+            <Card.Title className="text-center mb-4">Log in</Card.Title>
             {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control 
                         type="text" 
-                        placeholder="Inserisci l'username" 
+                        placeholder="Enter your username" 
                         value={username} 
                         onChange={e => setUsername(e.target.value)} 
                     />
@@ -40,14 +40,14 @@ function LoginForm({ login }) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
                         type="password" 
-                        placeholder="Inserisci la password" 
+                        placeholder="Enter your password" 
                         value={password} 
                         onChange={e => setPassword(e.target.value)} 
                     />
                 </Form.Group>
 
                 <Button variant="primary" type="submit" className="w-100">
-                    Entra
+                    Log in
                 </Button>
             </Form>
         </Card>

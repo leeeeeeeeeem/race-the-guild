@@ -20,9 +20,9 @@ function Leaderboard() {
     return (
         <div className="container py-2" style={{ maxWidth: '800px' }}>
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h2>Classifica</h2>
+                <h2>Leaderboard</h2>
                 <Button variant="secondary" as={Link} to="/">
-                    Torna alla home
+                    Back to home
                 </Button>
             </div>
 
@@ -33,14 +33,14 @@ function Leaderboard() {
             ) : (
                 <Card className="p-3">
                     {leaderboard.length === 0 ? (
-                        <div className="text-center py-4 text-muted">Nessun punteggio registrato</div>
+                        <div className="text-center py-4 text-muted">No scores recorded yet</div>
                     ) : (
                         <Table hover responsive className="mb-0">
                             <thead>
                                 <tr>
-                                    <th style={{ width: '10%' }}>Posizione</th>
+                                    <th style={{ width: '10%' }}>Rank</th>
                                     <th>Username</th>
-                                    <th className="text-end" style={{ width: '30%' }}>Miglior punteggio</th>
+                                    <th className="text-end" style={{ width: '30%' }}>Best score</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,7 +53,7 @@ function Leaderboard() {
                                         <td className="text-end">
                                             <span className="text-primary font-monospace fw-bold">
                                                 {row.best_score}
-                                            </span> solari
+                                            </span> Solaris
                                         </td>
                                     </tr>
                                 ))}

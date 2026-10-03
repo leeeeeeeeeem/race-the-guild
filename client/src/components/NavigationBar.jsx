@@ -9,13 +9,13 @@ function NavigationBar({ user, loggedIn, logout }) {
             <Container>
                 <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
                     <img src="/favicon.svg" width="40" height="40" className="me-2" />
-                    <strong>Ultima Corsa</strong>
+                    <strong>Race the Guild</strong>
                 </Navbar.Brand>
                 <Nav className="me-auto flex-row gap-3">
                     {loggedIn && (
                         <>
-                            <Nav.Link as={Link} to="/play">Gioca</Nav.Link>
-                            <Nav.Link as={Link} to="/leaderboard">Classifica</Nav.Link>
+                            <Nav.Link as={Link} to="/play">Play</Nav.Link>
+                            <Nav.Link as={Link} to="/leaderboard">Leaderboard</Nav.Link>
                         </>
                     )}
                 </Nav>
@@ -23,15 +23,15 @@ function NavigationBar({ user, loggedIn, logout }) {
                     {loggedIn ? (
                         <>
                             <Navbar.Text style={{ color: '#bac2de' }}>
-                                Utente: <strong>{user?.username}</strong>
+                                User: <strong>{user?.username}</strong>
                             </Navbar.Text>
                             <Button variant="secondary" onClick={() => logout().then(() => navigate('/'))}>
-                                Esci
+                                Log out
                             </Button>
                         </>
                     ) : (
                         <Button variant="primary" as={Link} to="/">
-                            Accedi
+                            Log in
                         </Button>
                     )}
                 </Nav>

@@ -20,10 +20,10 @@ function Home({ loggedIn, login }) {
                         <Card className="p-4 text-center">
                             <div className="d-flex justify-content-center gap-3">
                                 <Button variant="primary" size="lg" as={Link} to="/play">
-                                    Nuova partita
+                                    New game
                                 </Button>
                                 <Button variant="secondary" size="lg" as={Link} to="/leaderboard">
-                                    Classifica
+                                    Leaderboard
                                 </Button>
                             </div>
                         </Card>

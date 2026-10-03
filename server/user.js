@@ -9,7 +9,7 @@ export default class User {
                 if (err) {
                     reject(err);
                 } else if (row === undefined) {
-                    resolve({ error: 'Utente non trovato' });
+                    resolve({ error: 'User not found' });
                 } else {
                     resolve(row);
                 }

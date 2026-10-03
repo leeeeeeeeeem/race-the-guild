@@ -3,27 +3,27 @@ import { Card, Row, Col } from 'react-bootstrap';
 function Instructions() {
     return (
         <Card className="p-4 mb-2">
-            <Card.Title className="mb-3 text-primary"> <strong>Regole</strong> </Card.Title>
+            <Card.Title className="mb-3 text-primary"> <strong>Rules</strong> </Card.Title>
             <Card.Text>
-              Sei un viaggiatore che deve raggiungere un pianeta lontano nell'universo di Dune. La Gilda Spaziale detiene il monopolio sulle tratte di navigazione e non permette viaggi che non passano sulle tratte definite da loro. Il tuo obiettivo è pianificare una corsa conforme alle regole della Gilda, dati un pianeta di partenza e di arrivo, raggiungendo la destinazione con il saldo di Solari più alto possibile.
+              You are a traveler who must reach a distant planet in the Dune universe. The Spacing Guild holds a monopoly over navigation routes and forbids any journey that does not follow the routes it has defined. Given a departure planet and an arrival planet, your goal is to plan a journey that complies with the Guild's rules, reaching your destination with the highest possible balance of Solaris.
             </Card.Text>
             <Row className="mt-3 g-3">
                 <Col md={6}>
-                    <Card.Subtitle className="mb-2 text-primary">Fasi della partita</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-primary">Game phases</Card.Subtitle>
                     <ol className="ps-3 text-start " >
-                        <li className="mb-2"><strong>Setup:</strong> Studia la mappa della rete spaziale e memorizza le tratte e le linee. </li>
-                        <li className="mb-2"><strong>Pianificazione:</strong> Le linee spariscono dalla mappa, ti vengono dati un pianeta di partenza e uno di arrivo, seleziona le tratte in ordine per arrivare alla destinazione in meno di 90 secondi. </li>
-                        <li className="mb-2"><strong>Esecuzione:</strong> La Gilda controlla la tua rotta, se è valida ti vengono mostrate le varie tappe con gli eventi annessi, altrimenti finisce la partita con un saldo di 0 Solari. </li>
-                        <li><strong>Risultato:</strong> Guarda il saldo di Solari rimasti alla fine del viaggio.</li>
+                        <li className="mb-2"><strong>Setup:</strong> Study the map of the space network and memorize the connections and lines. </li>
+                        <li className="mb-2"><strong>Planning:</strong> The lines disappear from the map and you are given a departure and an arrival planet; select the connections in order to reach your destination in under 90 seconds. </li>
+                        <li className="mb-2"><strong>Execution:</strong> The Guild checks your route; if it is valid you are shown each leg along with its events, otherwise the game ends with a balance of 0 Solaris. </li>
+                        <li><strong>Result:</strong> See how many Solaris you have left at the end of the journey.</li>
                     </ol>
                 </Col>
                 <Col md={6}>
-                    <Card.Subtitle className="mb-2 text-primary">Vincoli di percorso</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-primary">Route constraints</Card.Subtitle>
                     <ul className="ps-3 text-start " >
-                        <li className="mb-2">Un percorso è valido quando inizia e termina nelle stazioni assegnate. </li>
-                        <li className="mb-2">Ogni tratta deve essere raggiungibile con una delle linee. </li>
-                        <li className="mb-2">I cambi di linea sono consentiti solamente nelle stazioni di interscambio.</li>
-                        <li className="mb-2">Non puoi ripercorrere la stessa tratta più di una volta, un percorso può contenere la stessa stazione più di una volta se compare in tratte diverse .</li>
+                        <li className="mb-2">A route is valid when it starts and ends at the assigned stations. </li>
+                        <li className="mb-2">Every connection must be served by one of the lines. </li>
+                        <li className="mb-2">Line changes are only allowed at interchange stations.</li>
+                        <li className="mb-2">You cannot travel the same connection more than once; a route may pass through the same station more than once if it appears in different connections.</li>
                     </ul>
                 </Col>
             </Row>

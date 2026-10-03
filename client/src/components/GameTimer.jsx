@@ -17,7 +17,7 @@ function GameTimer({ secondsLeft, setSecondsLeft, handleSubmit }) {
 
     return (
         <Card className="p-3 text-center">
-            <div className="small text-muted mb-1">Tempo rimasto</div>
+            <div className="small text-muted mb-1">Time left</div>
             <div className={`h2 mb-0 fw-bold font-monospace text-primary`}>
                 {secondsLeft}s
             </div>

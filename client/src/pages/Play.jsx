@@ -7,8 +7,8 @@ import ExecutionView from '../components/ExecutionView.jsx';
 import ResultView from '../components/ResultView.jsx';
 import API from '../API.js';
 
-// funzione per mettere il percorso dell'utente le formato richiesto
-// dal backend (lista di id di stazioni)
+// converts the user's route into the format expected
+// by the backend (list of station ids)
 const reconstructPath = (selectedConns, startId, endId) => {
     if (!startId || !endId || selectedConns.length === 0) return null;
 
@@ -131,12 +131,12 @@ function Play({ network }) {
                 <Col lg={4} md={12} className="d-flex flex-column">
                     {phase === 'SETUP' && (
                         <Card className="p-4 text-center flex-grow-1 d-flex flex-column justify-content-center">
-                            <Card.Title className="mb-3">Preparazione</Card.Title>
+                            <Card.Title className="mb-3">Setup</Card.Title>
                             <Card.Text className="small text-muted mb-4">
-                                Esamina la mappa per memorizzare le linee e le tratte, quando sei pronto a giocare clicca qui:
+                                Study the map to memorize the lines and connections. When you're ready to play, click here:
                             </Card.Text>
                             <Button variant="primary" size="lg" onClick={handleStartGame}>
-                                Inizia partita
+                                Start game
                             </Button>
                         </Card>
                     )}
@@ -165,7 +165,7 @@ function Play({ network }) {
                                 disabled={selectedConnections.length === 0}
                                 onClick={handleSubmit}
                             >
-                                Invia percorso
+                                Submit route
                             </Button>
                         </div>
                     )}

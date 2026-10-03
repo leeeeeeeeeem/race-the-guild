@@ -11,7 +11,7 @@ const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
     }
-    return res.status(401).json({ error: 'Non autorizzato' });
+    return res.status(401).json({ error: 'Unauthorized' });
 };
 
 router.post('/sessions', (req, res, next) => {
@@ -41,37 +41,37 @@ router.get('/sessions/current', (req, res) => {
     if (req.isAuthenticated()) {
         return res.json(req.user);
     }
-    return res.status(401).json({ error: 'Non autenticato' });
+    return res.status(401).json({ error: 'Not authenticated' });
 });
 
-router.get('/network', async (_, res) => {
+router.get('/network', async(_, res) => {
     try {
         const stations = await network.getStations();
         const lines = await network.getLines();
         const connections = await network.getConnections();
         res.json({ stations, lines, connections });
     } catch (err) {
-        res.status(500).json({ error: 'Errore interno del server' });
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-router.get('/leaderboard', isLoggedIn, async (_, res) => {
+router.get('/leaderboard', isLoggedIn, async(_, res) => {
     try {
         const leaderboard = await game.getLeaderboard();
         res.json(leaderboard);
     } catch (err) {
-        res.status(500).json({ error: 'Errore interno del server' });
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-router.post('/games', isLoggedIn, async (req, res) => {
+router.post('/games', isLoggedIn, async(req, res) => {
     try {
         const stations = await network.getStations();
 
         let startStation, endStation;
         let distance = 0;
 
-        while (distance < 3 ) {
+        while (distance < 3) {
             const idx1 = Math.floor(Math.random() * stations.length);
             let idx2 = Math.floor(Math.random() * stations.length);
             while (idx1 === idx2) {
@@ -92,16 +92,16 @@ router.post('/games', isLoggedIn, async (req, res) => {
             endStation
         });
 
-    } catch(err) {
-        res.status(500).json({ error: 'Errore interno del server' });
+    } catch (err) {
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-// riceve percorso dal client, lo valida e se va bene assegna gli eventi casualmente
-router.post('/games/submit', isLoggedIn, async (req, res) => {
+// receives the path from the client, validates it and, if valid, randomly assigns events
+router.post('/games/submit', isLoggedIn, async(req, res) => {
     try {
         if (!req.session.gameInProgress) {
-            return res.status(400).json({ error: 'Nessuna partita in corso' });
+            return res.status(400).json({ error: 'No game in progress' });
         }
 
         const elapsed = (Date.now() - req.session.gameStartTime) / 1000;
@@ -112,7 +112,7 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
             req.session.gameInProgress = false;
             return res.json({
                 valid: false,
-                error: 'Tempo scaduto',
+                error: 'Time is up',
                 score: 0,
                 steps: []
             });
@@ -123,7 +123,7 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
         const startId = req.session.startStationId;
         const endId = req.session.endStationId;
 
-        // logica per controllo del percorso
+        // path validation logic
         const validatePath = (p, sId, eId, conns) => {
             if (!Array.isArray(p) || p.length < 2) {
                 return false;
@@ -213,8 +213,8 @@ router.post('/games/submit', isLoggedIn, async (req, res) => {
             score: finalScore
         });
 
-    } catch(err) {
-        res.status(500).json({ error: 'Errore interno del server' });
+    } catch (err) {
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 

@@ -14,15 +14,15 @@ function ConnectionSelector({ network, selectedConnections, handleToggleConnecti
 
     return (
         <Card className="p-3 h-100">
-            <Card.Title className="mb-3 text-center">Pianificazione percorso</Card.Title>
+            <Card.Title className="mb-3 text-center">Route planning</Card.Title>
             
             <div className="mb-3 p-2 rounded" style={{ backgroundColor: '#313244' }}>
-                <div className="small text-muted mb-1">Partenza: <strong className="text-success">{startStation?.name}</strong></div>
-                <div className="small text-muted">Arrivo: <strong className="text-danger">{endStation?.name}</strong></div>
+                <div className="small text-muted mb-1">Departure: <strong className="text-success">{startStation?.name}</strong></div>
+                <div className="small text-muted">Arrival: <strong className="text-danger">{endStation?.name}</strong></div>
             </div>
 
             <div className="mb-3" style={{ maxHeight: '220px', overflowY: 'auto', paddingRight: '5px' }}>
-                <div className="small text-muted mb-2">Seleziona le tratte:</div>
+                <div className="small text-muted mb-2">Select the connections:</div>
                 <Row className="g-2">
                     {uniqueConnections.map((conn) => {
                         const u = conn.station1_id;
@@ -59,7 +59,7 @@ function ConnectionSelector({ network, selectedConnections, handleToggleConnecti
                     disabled={selectedConnections.length === 0}
                     onClick={handleClear}
                 >
-                    Svuota selezione
+                    Clear selection
                 </Button>
             </div>
         </Card>

@@ -40,8 +40,8 @@ export default class Network {
         });
     }
 
-    // ricerca in ampiezza (bfs) sul grafo delle connessioni rappresentato come lista delle adiacenze
-    // per trovare la distanza minima, che serve per l'assegnazione delle due stazioni all'inizio della partita
+    // breadth-first search (bfs) on the connection graph, represented as an adjacency list,
+    // to find the shortest distance, used to pick the two stations at the start of the game
     async getDistance(startId, endId) {
         const connections = await this.getConnections();
         const adj = {};

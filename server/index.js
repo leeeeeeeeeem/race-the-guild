@@ -30,7 +30,7 @@ passport.use(new LocalStrategy(async function verify(username, password, done) {
     try {
         const user = await users.getUserByCredentials(username, password);
         if (!user) {
-            return done(null, false, 'Username o password sbagliati');
+            return done(null, false, 'Wrong username or password');
         }
         return done(null, user);
     } catch (err) {
@@ -49,5 +49,5 @@ passport.deserializeUser((user, done) => {
 app.use('/api', apiRouter);
 
 app.listen(port, () => {
-    console.log(`Server in ascolto sulla porta ${port}`);
+    console.log(`Server listening on port ${port}`);
 });

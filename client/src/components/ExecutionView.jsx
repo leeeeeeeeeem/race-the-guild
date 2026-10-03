@@ -11,10 +11,10 @@ function ExecutionView({ submitResults, handleFinishExecution }) {
     if (!valid) {
         return (
             <Card className="p-4 text-center">
-                <Card.Title as="h3" className="text-danger mb-3">Percorso non valido</Card.Title>
-                <div className="h5 my-4">Punteggio ottenuto: <strong className="text-danger">0</strong> solari</div>
+                <Card.Title as="h3" className="text-danger mb-3">Invalid route</Card.Title>
+                <div className="h5 my-4">Score: <strong className="text-danger">0</strong> Solaris</div>
                 <Button variant="primary" onClick={handleFinishExecution}>
-                    Visualizza risultato
+                    View result
                 </Button>
             </Card>
         );
@@ -33,13 +33,13 @@ function ExecutionView({ submitResults, handleFinishExecution }) {
 
     return (
         <Card className="p-3">
-            <Card.Title className="mb-3 text-center text-primary">Corsa in esecuzione</Card.Title>
+            <Card.Title className="mb-3 text-center text-primary">Journey in progress</Card.Title>
 
             <div className="p-3 mb-4 rounded" style={{ backgroundColor: '#1e1e2e', color: '#cdd6f4' }}>
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                    <div className="small text-muted">Tappa {currentIdx + 1} di {steps.length}</div>
+                    <div className="small text-muted">Leg {currentIdx + 1} of {steps.length}</div>
                     <div className="fw-bold font-monospace text-primary">
-                        Saldo: {currentStep.coins} solari
+                        Balance: {currentStep.coins} Solaris
                     </div>
                 </div>
 
@@ -48,24 +48,24 @@ function ExecutionView({ submitResults, handleFinishExecution }) {
                 </div>
 
                 <div className="p-3 rounded text-center" style={{ backgroundColor: '#11111b', color: '#cdd6f4' }}>
-                    <div className="small text-muted mb-1">Evento Tratta</div>
+                    <div className="small text-muted mb-1">Leg event</div>
                     <div className="fw-bold mb-2">{currentStep.event.description}</div>
                     <div className={`fw-bold ${currentStep.event.effect >= 0 ? 'text-success' : 'text-danger'}`}>
-                        {currentStep.event.effect >= 0 ? `+${currentStep.event.effect}` : currentStep.event.effect} solari
+                        {currentStep.event.effect >= 0 ? `+${currentStep.event.effect}` : currentStep.event.effect} Solaris
                     </div>
                 </div>
             </div>
 
             <div className="mb-4">
-                <div className="small text-muted mb-2">Storico del viaggio:</div>
+                <div className="small text-muted mb-2">Journey log:</div>
                 <Table hover responsive className="small">
                     <thead>
                         <tr>
-                            <th>Da</th>
-                            <th>A</th>
-                            <th>Evento</th>
-                            <th className="text-end">Impatto</th>
-                            <th className="text-end">Saldo</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Event</th>
+                            <th className="text-end">Impact</th>
+                            <th className="text-end">Balance</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,9 +87,9 @@ function ExecutionView({ submitResults, handleFinishExecution }) {
             <div className="d-flex justify-content-center">
                 <Button variant="primary" size="lg" onClick={handleNext} style={{ minWidth: '200px' }}>
                     {currentIdx < steps.length - 1 ? (
-                        'Tappa successiva'
+                        'Next leg'
                     ) : (
-                        'Visualizza risultato'
+                        'View result'
                     )}
                 </Button>
             </div>
